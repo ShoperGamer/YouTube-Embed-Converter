@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>YouTube Embed Converter</title>
+  <meta name="description" content="เครื่องมือแปลงลิงก์ YouTube เป็น Embed Code ฟรี รองรับ Shorts, Live, Playlist ปรับขนาดอัตโนมัติ โหลดเร็ว ใช้งานง่าย">
+  <meta name="keywords" content="YouTube Embed, YouTube Shorts Embed, แปลงลิงก์ยูทูบ, โค้ดฝังวิดีโอ, YouTube Converter">
+  <meta name="author" content="Shoper Team">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="YouTube Embed Converter - แปลงลิงก์ YouTube ฟรี">
+  <meta property="og:description" content="แปลงลิงก์ YouTube เป็น Embed Code ง่ายๆ รองรับทุกรูปแบบ Shorts, Live, Playlist">
+
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="icon" type="image/x-icon" href="icon.png">
+  <link href="./src/style.css" rel="stylesheet">
+  
+  <script src="./src/lucide.js" defer></script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen font-sans">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-gray-900 mb-3 flex items-center justify-center gap-3">
+        <i data-lucide="youtube" class="text-red-600"></i>
+        YouTube Embed Converter
+      </h1>
+      <p class="text-lg text-gray-600">แปลงลิงก์ YouTube เป็น embed code สำหรับนำไปใส่ในเว็บไซต์ของคุณ</p>
+      
+      <nav class="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
+        <span class="px-3 py-1 bg-gray-100 rounded-full">รองรับคลิปสั้น</span>
+        <span class="px-3 py-1 bg-gray-100 rounded-full">รองรับคลิปยาว</span>
+        <span class="px-3 py-1 bg-gray-100 rounded-full">รองรับไลฟ์สด</span>
+        <span class="px-3 py-1 bg-gray-100 rounded-full">รองรับเพลย์ลิสต์</span>
+      </nav>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+            <i data-lucide="link"></i>
+            แปลงลิงก์ YouTube
+          </h2>
+          
+          <div class="space-y-4">
+            <div>
+              <label for="youtube-url" class="block text-sm font-medium text-gray-700 mb-2">
+                วางลิงก์ YouTube ของคุณที่นี่
+              </label>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="url" 
+                  id="youtube-url" 
+                  placeholder="https://www.youtube.com/watch?v=..." 
+                  class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition"
+                  aria-label="YouTube URL Input"
+                >
+                <button 
+                  id="convert-btn" 
+                  class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition flex items-center justify-center gap-2"
+                >
+                  <i data-lucide="refresh-cw"></i>
+                  แปลงเป็น Embed
+                </button>
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <button data-example="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="example-btn text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition">ตัวอย่าง: คลิปปกติ</button>
+                <button data-example="https://youtube.com/shorts/it3Ezdy3NGY" class="example-btn text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition">ตัวอย่าง: Shorts</button>
+                <button data-example="https://www.youtube.com/live/jfKfPfyJRdk" class="example-btn text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition">ตัวอย่าง: Live</button>
+                <button data-example="https://youtube.com/playlist?list=PLAmmJmTX1UDCmGNrxtmIebMHlEEAYnE0U&si=Q3ROJAPVmCCc4fZQj" class="example-btn text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition">ตัวอย่าง: Playlist</button>
+              </div>
+            </div>
+            
+            <div class="pt-4 border-t border-gray-200">
+              <h3 class="font-medium text-gray-700 mb-3">ตั้งค่า Embed (Optional)</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label class="flex items-center space-x-3 cursor-pointer">
+                  <input type="checkbox" id="autoplay" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                  <span class="text-gray-700">เล่นอัตโนมัติ</span>
+                </label>
+                <label class="flex items-center space-x-3 cursor-pointer">
+                  <input type="checkbox" id="controls" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500" checked>
+                  <span class="text-gray-700">แสดงปุ่มควบคุม</span>
+                </label>
+                <label class="flex items-center space-x-3 cursor-pointer">
+                  <input type="checkbox" id="modestbranding" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                  <span class="text-gray-700">ซ่อนโลโก้ YouTube</span>
+                </label>
+                <label class="flex items-center space-x-3 cursor-pointer">
+                  <input type="checkbox" id="rel" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                  <span class="text-gray-700">แสดงวิดีโอที่เกี่ยวข้อง</span>
+                </label>
+              </div>
+              
+              <div id="playlist-settings" class="mt-4 pt-4 border-t border-gray-200 hidden">
+                <h4 class="font-medium text-gray-700 mb-3">ตั้งค่าเพลย์ลิสต์</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="checkbox" id="playlist-index" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                    <span class="text-gray-700">เริ่มเล่นที่วิดีโอแรก</span>
+                  </label>
+                  <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="checkbox" id="playlist-loop" class="h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                    <span class="text-gray-700">เล่นวนลูป</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="preview-section" class="bg-white rounded-xl shadow-lg p-6 hidden">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+              <i data-lucide="eye"></i>
+              พรีวิว Embed
+            </h2>
+            <button 
+              id="copy-embed" 
+              class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg flex items-center gap-2 transition"
+            >
+              <i data-lucide="copy"></i>
+              คัดลอกโค้ด
+            </button>
+          </div>
+          
+          <div class="space-y-6">
+            <div id="video-preview" class="bg-gray-900 rounded-lg overflow-hidden flex justify-center items-center bg-black">
+              </div>
+            
+            <div>
+              <h3 class="font-medium text-gray-700 mb-3">โค้ดสำหรับนำไปใช้</h3>
+              <div class="relative">
+                <pre id="embed-code" class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono"></pre>
+                <div id="copy-success" class="absolute top-3 right-3 hidden">
+                  <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i>
+                    คัดลอกแล้ว!
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <div id="video-info" class="border-t border-gray-200 pt-4">
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="sticky top-6 space-y-6">
+          <article class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <i data-lucide="alert-triangle" class="text-amber-500"></i>
+              ข้อจำกัด (Troubleshoot)
+            </h3>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start gap-2">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-500 mt-1 flex-shrink-0"></i>
+                <span>เจ้าของคลิปอาจปิดการ Embed</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="globe" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i>
+                <span>คลิปอาจถูกบล็อกในบางประเทศ</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <i data-lucide="thumbs-up" class="text-green-500"></i>
+              ข้อดีของการ Embed
+            </h3>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-500 mt-1 flex-shrink-0"></i>
+                <span><strong>Fast Load:</strong> เว็บโหลดไว ไม่หนักเครื่อง</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="smartphone" class="w-4 h-4 text-purple-500 mt-1 flex-shrink-0"></i>
+                <span><strong>Responsive:</strong> รองรับมือถือและ PC</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-600">
+      <p class="mb-2">สร้างด้วย <i data-lucide="heart" class="w-4 h-4 inline text-red-500"></i></p>
+      <p class="text-sm">Tech Stack : HTML5 , TailwindCSS + Vite , JavaScript (Optimized)</p>
+      <div class="mt-4 flex justify-center gap-4">
+        <a href="https://github.com/ShoperGamer" target="_blank" class="text-gray-500 hover:text-gray-700" aria-label="Github">
+          <i data-lucide="code" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.youtube.com/@shoperteam2788" target="_blank" class="text-gray-500 hover:text-gray-700" aria-label="YouTube Channel">
+          <i data-lucide="youtube" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/index.js"></script>
+</body>
+</html>

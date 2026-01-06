@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /src/style.css
+Allow: /src/index.js
+Allow: /src/lucide.js
+
+# ไม่อนุญาตให้บอทเข้าถึงไฟล์ส่วนตัวหรือไฟล์ระบบ 
+Disallow: /public/icon.png
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.git/
